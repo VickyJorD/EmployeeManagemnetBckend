@@ -14,48 +14,45 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.springboot.Sevices.EmployeeService;
+import com.springboot.Sevices.AdminService;
+import com.springboot.model.Admin;
 import com.springboot.model.Employee;
 
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/admin")
 @CrossOrigin("http://localhost:3000/")
-public class Controller {
-
+public class AdminController {
+	
+	
 	@Autowired
-	private EmployeeService employeeService;
+	private AdminService adminService;
 	
 	
 	@PostMapping
-	public String add(@RequestBody Employee employee) {
-		employeeService.saveEmploye(employee);
-		return "New Employee is added";
+	public String add(@RequestBody Admin admin) {
+		adminService.saveAdmin(admin);
+		return "New admin is added";
 	}
 	
-	
-	
 	@GetMapping
-	public List<Employee> getAllEmployee(){
-		return employeeService.getAllEmployee(null);
+	public List<Admin> getAllAdmin(){
+		return adminService.getAllAdmin(null);
 	}
 	
 	
 	
 	@GetMapping("/{id}")
-	public Optional<Employee> getEmployeeById(@PathVariable int id){
-		return employeeService.getEmployeeById(id);
+	public Optional<Admin> getAdminById(@PathVariable int id){
+		return adminService.getAdminById(id);
 		
 	}
 	
 	@PutMapping("/{id}")
-	public Employee updateEmployee(@PathVariable int id , @RequestBody Employee employee)
+	public Admin updateAdmin(@PathVariable int id , @RequestBody Admin admin)
 	{
-		return employeeService.updateEmployee(id, employee);
+		return adminService.updateAdmin(id, admin);
 	
 }
-	@DeleteMapping("/{id}")
-	public void deleteEmployee(@PathVariable int id ) {
-		employeeService.deleteEmployee(id);
-	}
 	
+
 }
